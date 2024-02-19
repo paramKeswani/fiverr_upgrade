@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "566563010383",
+    "project_id": "fiverrclone-d00cd",
+    "storage_bucket": "fiverrclone-d00cd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:566563010383:android:72d9d28be293c0729b773a",
+        "android_client_info": {
+          "package_name": "com.example.f"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDofC--G73XQtL8ZIe6T0ukGyk0fR-sLwA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
