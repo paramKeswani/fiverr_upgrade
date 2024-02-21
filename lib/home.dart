@@ -15,6 +15,11 @@ import 'n_logout.dart';
 import 'n_contact.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'display.dart';
+import 'package:f/login.dart';
+import 'package:f/splash_screen.dart';
+import 'package:f/utils/utils.dart';
+import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -25,6 +30,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int currentPage = 0;
+  final auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -33,15 +39,44 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: NavigationBar(
         destinations: const [
           NavigationDestination(icon: Icon(Icons.list), label: ""),
-          NavigationDestination(icon: Icon(Icons.search), label: ""),
           NavigationDestination(icon: Icon(Icons.add), label: ""),
-          NavigationDestination(icon: Icon(Icons.account_circle), label: ""),
           NavigationDestination(icon: Icon(Icons.logout), label: "")
         ],
         onDestinationSelected: (int index) {
-          setState(() {
-            currentPage = index;
-          });
+          if (index == 2) {
+            showDialog(
+              context: context,
+              builder: (ctx) => AlertDialog(
+                title: const Text("Alert Dialog Box"),
+                content: const Text("You have raised a Alert Dialog Box"),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(ctx).pop();
+                    },
+                    child: Container(
+                        child: ElevatedButton(
+                            onPressed: () {
+                              auth.signOut().then((value) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Login()));
+                              }).onError((error, stackTrace) {
+                                utils().toastMessage(error.toString());
+                              });
+                            },
+                            child: Text("Logout"))),
+                  ),
+                ],
+              ),
+            );
+            // Show logout confirmation dialog
+          } else {
+            setState(() {
+              currentPage = index;
+            });
+          }
         },
         selectedIndex: currentPage,
       ),
@@ -49,25 +84,24 @@ class _HomeState extends State<Home> {
   }
 
   Widget buildPage(int index) {
-    switch (index) {
-      case 0:
-        // Page 0 content
-        return YourFirstPageWidget();
-      case 1:
-        // Page 1 content
-        return n_search();
-      case 2:
-        // Page 2 content
-        return form();
-      case 3:
-        // Page 3 content
-        return contact();
-      case 4:
-        // Page 4 content
-        return logout();
-      default:
-        // Handle invalid index
-        return Container();
+    if (index >= 0 && index < 3) {
+      switch (index) {
+        case 0:
+          // Page 0 content
+          return YourFirstPageWidget();
+        case 1:
+          // Page 2 content
+          return form();
+        case 2:
+          // Page 4 content
+          return logout();
+        default:
+          // Handle invalid index by returning the first page
+          return YourFirstPageWidget();
+      }
+    } else {
+      // Handle out-of-range index by returning the first page
+      return YourFirstPageWidget();
     }
   }
 }

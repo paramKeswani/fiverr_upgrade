@@ -43,6 +43,7 @@ dependencies:
   firebase_database: ^10.4.5
   url_launcher: ^6.2.4
   web: 0.3.0
+  comment_box: ^0.0.18
   
 
 dev_dependencies:
