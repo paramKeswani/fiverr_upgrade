@@ -10,10 +10,17 @@ class form extends StatefulWidget {
 }
 
 class _formState extends State<form> {
+  final companyNameController = TextEditingController();
+  final companyAddController = TextEditingController();
+  // final jobTitleController = TextEditingController();
+  final uploadedOnController = TextEditingController();
+  final deadlineController = TextEditingController();
   final jobCatController = TextEditingController();
-  final jobTitleController = TextEditingController();
+
   final jobDescController = TextEditingController();
   final jobDeadLineController = TextEditingController();
+  final companyImageController = TextEditingController();
+  final companyEmailController = TextEditingController();
   final databaseRef = FirebaseDatabase.instance.ref("Posts");
 
   final databaseRef1 = FirebaseDatabase.instance.ref("abc");
@@ -43,7 +50,7 @@ class _formState extends State<form> {
                 controller: jobCatController,
                 decoration: const InputDecoration(
                     icon: const Icon(Icons.person),
-                    hintText: 'Enter your name',
+                    hintText: 'Job Name',
                     labelText: 'Job Category',
                     border: OutlineInputBorder()),
               ),
@@ -51,11 +58,44 @@ class _formState extends State<form> {
                 height: 30,
               ),
               TextFormField(
-                controller: jobTitleController,
+                controller: companyNameController,
                 decoration: const InputDecoration(
-                    icon: const Icon(Icons.phone),
-                    hintText: 'Enter a phone number',
-                    labelText: 'Job Title',
+                    icon: const Icon(Icons.person),
+                    hintText: 'Name of Company',
+                    labelText: 'Company',
+                    border: OutlineInputBorder()),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                controller: companyAddController,
+                decoration: const InputDecoration(
+                    icon: const Icon(Icons.person),
+                    hintText: 'Address of Company',
+                    labelText: 'Company Address',
+                    border: OutlineInputBorder()),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                controller: uploadedOnController,
+                decoration: const InputDecoration(
+                    icon: const Icon(Icons.person),
+                    hintText: 'uploaded date',
+                    labelText: 'Uploaded On',
+                    border: OutlineInputBorder()),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                controller: deadlineController,
+                decoration: const InputDecoration(
+                    icon: const Icon(Icons.person),
+                    hintText: 'DeadLine Date',
+                    labelText: 'DeadLine Date ',
                     border: OutlineInputBorder()),
               ),
               SizedBox(
@@ -73,15 +113,12 @@ class _formState extends State<form> {
                 height: 30,
               ),
               TextFormField(
-                controller: jobDeadLineController,
+                controller: companyEmailController,
                 decoration: const InputDecoration(
                     icon: const Icon(Icons.calendar_today),
-                    hintText: 'Enter your date of birth',
-                    labelText: 'Job Deadline Date :',
+                    hintText: 'Enter company email',
+                    labelText: 'Company email',
                     border: OutlineInputBorder()),
-              ),
-              SizedBox(
-                height: 30,
               ),
               Container(
                   margin: EdgeInsets.all(10),
@@ -94,9 +131,14 @@ class _formState extends State<form> {
                                 .toString())
                             .set({
                           'j_cat': jobCatController.text.toString(),
-                          'j_title': jobTitleController.text.toString(),
+                          // 'j_title': jobTitleController.text.toString(),
+                          'j_deadl': deadlineController.text.toString(),
+
+                          'c_name': companyNameController.text.toString(),
+                          'address': companyAddController.text.toString(),
+                          'upload_date': uploadedOnController.text.toString(),
                           'j_desc': jobDescController.text.toString(),
-                          'j_deadl': jobDeadLineController.text.toString()
+                          'com_email': companyEmailController.text.toString(),
                         }).then(
                           (value) {
                             utils().toastMessage("submitted");

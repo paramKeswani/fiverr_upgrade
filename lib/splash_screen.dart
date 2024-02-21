@@ -21,11 +21,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text(
-          'Firebase Tutorials',
-          style: TextStyle(fontSize: 30),
+        child: Image.asset(
+          "images/fiverr.png",
+          width: 200,
         ),
       ),
     );

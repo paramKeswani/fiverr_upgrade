@@ -1,0 +1,24 @@
+ appBar: AppBar(
+        title: Text('Display Screen'),
+      ),
+      body: Column(
+        children: [
+          Text('Category: ${widget.jCat}'),
+          Text('Deadline: ${widget.jDeadl}'),
+          Text('Description: ${widget.jDesc}'),
+          Text('Title: ${widget.jTitle}'),
+          // Add more widgets to display other data if needed
+        ],
+      ),
+
+
+
+       'j_cat': jobCatController.text.toString(),
+                          'j_title': jobTitleController.text.toString(),
+                          'j_desc': jobDescController.text.toString(),
+                          'j_deadl': jobDeadLineController.text.toString(),
+                          'count': 0,
+                          'c_name': companyNameController.text.toString(),
+                          'address': companyAddController.text.toString(),
+                          'upload_date': uploadedOnController.text.toString(),
+                          'deadline': deadlineController.text.toString()
