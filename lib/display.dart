@@ -76,7 +76,7 @@ class _DisplayScreenState extends State<DisplayScreen> {
     databaseRef1 = FirebaseDatabase.instance
         .ref()
         .child("abc")
-        .child(widget.jDesc)
+        .child(widget.jCat)
         .child('comments');
   }
 

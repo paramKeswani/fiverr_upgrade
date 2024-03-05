@@ -126,7 +126,7 @@ class _formState extends State<form> {
                   child: OutlinedButton(
                       onPressed: () {
                         databaseRef1
-                            .child(jobDescController.text.toString())
+                            .child(jobCatController.text.toString())
                             .set({
                           'j_cat': jobCatController.text.toString(),
                           // 'j_title': jobTitleController.text.toString(),
