@@ -230,6 +230,9 @@ class YourFirstPageWidget extends StatelessWidget {
                                   cemail: DataSnapshot.child('com_email')
                                       .value
                                       .toString(),
+                                  comments: DataSnapshot.child('comments')
+                                      .value
+                                      .toString(),
                                 ),
                               ),
                             );

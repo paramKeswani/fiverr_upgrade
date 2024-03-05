@@ -126,9 +126,7 @@ class _formState extends State<form> {
                   child: OutlinedButton(
                       onPressed: () {
                         databaseRef1
-                            .child(DateTime.now()
-                                .microsecondsSinceEpoch
-                                .toString())
+                            .child(jobDescController.text.toString())
                             .set({
                           'j_cat': jobCatController.text.toString(),
                           // 'j_title': jobTitleController.text.toString(),
@@ -139,6 +137,13 @@ class _formState extends State<form> {
                           'upload_date': uploadedOnController.text.toString(),
                           'j_desc': jobDescController.text.toString(),
                           'com_email': companyEmailController.text.toString(),
+                          'comments': [
+                            {
+                              'name': 'abc',
+                              'message': 'intrested in this job ?',
+                              'date': '00:00:00'
+                            }
+                          ],
                         }).then(
                           (value) {
                             utils().toastMessage("submitted");

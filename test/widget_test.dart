@@ -1,30 +1,30 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+// import 'package:flutter/material.dart';
+// import 'package:flutter_test/flutter_test.dart';
+// import 'package:your_app/widgets/your_widget.dart';
 
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
+// void main() {
+//   testWidgets('Widget should display text', (WidgetTester tester) async {
+//     // Build the widget
+//     await tester.pumpWidget(YourWidget(text: 'Hello'));
 
-import 'package:f/main.dart';
+//     // Find the Text widget
+//     expect(find.text('Hello'), findsOneWidget);
+//   });
 
-void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+//   testWidgets('Widget should increment counter', (WidgetTester tester) async {
+//     // Build the widget
+//     await tester.pumpWidget(YourCounterWidget());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+//     // Verify initial state
+//     expect(find.text('0'), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+//     // Tap on the increment button
+//     await tester.tap(find.byKey(const Key('increment_button')));
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
-  });
-}
+//     // Rebuild the widget
+//     await tester.pump();
+
+//     // Verify updated state
+//     expect(find.text('1'), findsOneWidget);
+//   });
+// }
