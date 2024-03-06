@@ -2,18 +2,18 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'signup.dart';
 import 'home.dart';
-import "utils/utils.dart";
+import 'utils/utils.dart';
 import 'main.dart';
 
 class Login extends StatefulWidget {
-  const Login({super.key});
+  const Login({Key? key}) : super(key: key);
 
   @override
   State<Login> createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
-  final _formkey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final _auth = FirebaseAuth.instance;
@@ -21,8 +21,9 @@ class _LoginState extends State<Login> {
   void login() {
     _auth
         .signInWithEmailAndPassword(
-            email: emailController.text,
-            password: passwordController.text.toString())
+      email: emailController.text,
+      password: passwordController.text.toString(),
+    )
         .then((value) {
       Navigator.push(
         context,
@@ -44,69 +45,82 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text("Login"),
+        backgroundColor: Colors.blueGrey[200],
         automaticallyImplyLeading: false,
-        title: Center(child: Text("Login")),
-        backgroundColor: Color.fromARGB(255, 223, 230, 236),
       ),
       body: Container(
-        width: double.infinity,
-        height: 700,
-        color: const Color.fromARGB(255, 223, 230, 236),
-        margin: EdgeInsets.fromLTRB(50, 100, 50, 100),
+        height: double.infinity,
+        padding: EdgeInsets.all(20),
+        color: Colors.blueGrey[100],
         child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset("images/login.jpg"),
+              SizedBox(height: 20),
+              Image.asset(
+                "images/login.jpg",
+                height: 200,
+              ),
+              SizedBox(height: 20),
               Form(
-                key: _formkey,
-                child: Column(children: [
-                  TextFormField(
-                    controller: emailController,
-                    decoration: const InputDecoration(
-                      labelText: 'Username',
+                key: _formKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: emailController,
+                      decoration: InputDecoration(
+                        labelText: 'Username',
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) return 'Empty email';
+                        return null;
+                      },
                     ),
-                    validator: (value) {
-                      if (value!.isEmpty) return 'Empty email';
-                      return null;
-                    },
-                  ),
-                  TextFormField(
-                    controller: passwordController,
-                    obscureText: true,
-                    decoration: const InputDecoration(
-                      labelText: 'Password',
+                    SizedBox(height: 20),
+                    TextFormField(
+                      controller: passwordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        labelText: 'Password',
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) return 'Empty password';
+                        return null;
+                      },
                     ),
-                    validator: (value) {
-                      if (value!.isEmpty) return 'Empty password';
-                      return null;
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    login();
+                  }
+                },
+                child: Text("Login"),
+                style: ElevatedButton.styleFrom(),
+              ),
+              SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Don't have an account? "),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Signup()),
+                      );
                     },
+                    child: Text(
+                      "Sign Up",
+                      style: TextStyle(color: Colors.purple),
+                    ),
                   ),
-                ]),
-              ),
-              SizedBox(
-                height: 20,
-                width: double.infinity,
-              ),
-              OutlinedButton(
-                  onPressed: () {
-                    if (_formkey.currentState!.validate()) {
-                      login();
-                    }
-                  },
-                  child: Text("Login")),
-              SizedBox(
-                height: 10,
-              ),
-              Text("Dont have an account? "),
-              TextButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Signup()));
-                  },
-                  child: const Text(
-                    "Sign Up",
-                    style: TextStyle(color: Colors.purple),
-                  ))
+                ],
+              )
             ],
           ),
         ),

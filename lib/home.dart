@@ -37,6 +37,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: buildPage(currentPage), // <-- Separate method to build pages
       bottomNavigationBar: NavigationBar(
+        backgroundColor: Colors.blueGrey[300],
         destinations: const [
           NavigationDestination(icon: Icon(Icons.list), label: ""),
           NavigationDestination(icon: Icon(Icons.add), label: ""),
@@ -91,7 +92,7 @@ class _HomeState extends State<Home> {
           return YourFirstPageWidget();
         case 1:
           // Page 2 content
-          return form();
+          return CustomForm();
         case 2:
           // Page 4 content
           return logout();
@@ -113,9 +114,10 @@ class YourFirstPageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey[100],
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.blueGrey[200],
         title: Text(
           "Home",
           textAlign: TextAlign.center,
@@ -128,80 +130,56 @@ class YourFirstPageWidget extends StatelessWidget {
               query: ref,
               itemBuilder: (context, DataSnapshot, Animation, Index) {
                 return Card(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            right: BorderSide(color: Colors.black, width: 1),
-                          ),
+                  margin: EdgeInsets.fromLTRB(20, 15, 20, 0), // Add margin
+                  child: Padding(
+                    padding: EdgeInsets.all(10), // Add padding
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.album,
+                          size: 50,
                         ),
-                        child: Icon(Icons.album),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 15),
+                        SizedBox(width: 10), // Add spacing
+                        Expanded(
                           child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: <Widget>[
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Text(
-                                    DataSnapshot.child('j_cat')
-                                        .value
-                                        .toString(),
-                                    style: TextStyle(
-                                        color: Colors.blueAccent,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                DataSnapshot.child('j_cat').value.toString(),
+                                style: TextStyle(
+                                  color: Colors.blueAccent,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Text(DataSnapshot.child('j_deadl')
-                                      .value
-                                      .toString()),
-                                ],
+                              SizedBox(),
+                              Text(
+                                DataSnapshot.child('j_deadl').value.toString(),
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w800,
+                                ),
                               ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Flexible(
-                                    child: Text(DataSnapshot.child('j_desc')
-                                        .value
-                                        .toString()),
-                                  ),
-                                ],
+                              Text(
+                                DataSnapshot.child('j_desc').value.toString(),
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Flexible(
-                                    child: Text(DataSnapshot.child('c_name')
-                                        .value
-                                        .toString()),
-                                  ),
-                                ],
+                              Text(
+                                DataSnapshot.child('c_name').value.toString(),
+                                style: TextStyle(
+                                  color: Colors.brown,
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ],
                           ),
                         ),
-                      ),
-                      Container(
-                        child: IconButton(
-                          icon: const Icon(Icons.arrow_right),
-                          iconSize: 30,
+                        IconButton(
+                          icon: Icon(Icons.arrow_right),
                           onPressed: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
@@ -224,9 +202,6 @@ class YourFirstPageWidget extends StatelessWidget {
                                   jDesc: DataSnapshot.child('j_desc')
                                       .value
                                       .toString(),
-                                  // jTitle: DataSnapshot.child('j_title')
-                                  //     .value
-                                  //     .toString(),
                                   cemail: DataSnapshot.child('com_email')
                                       .value
                                       .toString(),
@@ -238,8 +213,8 @@ class YourFirstPageWidget extends StatelessWidget {
                             );
                           },
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               },
@@ -250,14 +225,3 @@ class YourFirstPageWidget extends StatelessWidget {
     );
   }
 }
-
-//  return ListView.builder(
-//               shrinkWrap: true,
-//               itemCount: data.length,
-//               physics: NeverScrollableScrollPhysics(),
-//               itemBuilder: (context, index) {
-//                 var cardData = data[index];
-//                 return TransactionCard(
-//                   data: cardData,
-//                 );
-//               });

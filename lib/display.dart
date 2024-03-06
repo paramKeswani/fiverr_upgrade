@@ -76,7 +76,7 @@ class _DisplayScreenState extends State<DisplayScreen> {
     databaseRef1 = FirebaseDatabase.instance
         .ref()
         .child("abc")
-        .child(widget.jCat)
+        .child(widget.jDesc)
         .child('comments');
   }
 
@@ -122,8 +122,9 @@ class _DisplayScreenState extends State<DisplayScreen> {
       }
     ];
     return Scaffold(
+      backgroundColor: Colors.blueGrey[100],
       appBar: AppBar(
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.blueGrey[200],
         automaticallyImplyLeading: false,
         leading: IconButton(
           onPressed: () {
