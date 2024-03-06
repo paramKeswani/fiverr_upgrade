@@ -8,7 +8,7 @@ Its a project through which one can apply for jobs , post about the jopb opening
 ## Getting Started
 
 This project is a starting point for a Flutter application.
-Technologies used flutter firebase 
+-Technologies used flutter firebase 
 
 ## UI
 -Login and Signup Page for Authentication
@@ -18,7 +18,7 @@ Technologies used flutter firebase
 ## FireBase Features and Data Stored in Firebase
 -User Authentication(Register and Login).
 -Add Post , Likes and Comments.
-A few resources to get you started if this is your first Flutter project:
+-A few resources to get you started if this is your first Flutter project:
 
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
