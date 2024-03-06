@@ -10,11 +10,11 @@ Its a project through which one can apply for jobs , post about the jopb opening
 This project is a starting point for a Flutter application.
 Technologies used flutter firebase 
 
-UI
+## UI
 -Login and Signup Page for Authentication
 -Home Screen where user can see post like and comment on it.
 
-FireBase Features and Data Stored in Firebase
+## FireBase Features and Data Stored in Firebase
 User Authentication(Register and Login).
 -Add Post , Likes and Comments.
 A few resources to get you started if this is your first Flutter project:
